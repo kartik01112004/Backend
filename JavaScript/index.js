@@ -86,7 +86,7 @@ function Circle(radius) {
   };
 }
 
-const circle = new Circle(1);
+const circle4 = new Circle(1);
 
 //getter and setters
 
@@ -135,3 +135,91 @@ function increase1(obj) {
 
 increase1(obj);
 console.log(obj); //now the value isUpdated
+
+//object cloning
+const circle = {
+  radius: 1,
+  draw() {
+    console.log("draw");
+  },
+};
+
+// const another1 = {};
+
+// for (let key in circle) {
+//   another1[key] = circle[key];
+// } //we have a better  way
+
+const another1 = Object.assign({ color: "red" }, circle1); //this assign one or more obejcts to an objects(all of there things)
+// also we can give attributes ..whatever we want we can put in curly braces
+const another2 = { ...circle }; //just copies the object
+
+console.log(another1);
+
+//'this' kew word
+
+//refrences to the object using current function
+
+const video = {
+  title: "a",
+  play() {
+    console.log("video");
+  },
+};
+video.stop = function () {
+  console.log("stop");
+};
+//normal fns here they are calling windows object of our console
+
+const video1 = {
+  title: "a",
+  tags: ["a", "b", "c"],
+  showTags() {
+    //object ka fn so this wll reffer to its object
+    this.tags.forEach(function (tag) {
+      //here function is normal fn as its inforech and is not connected to video1 object
+      console.log(this.title, tag);
+    }, this); //we pass this here to tell for eacg that it needs to pair us with video1 object
+  },
+};
+
+video1.showTags();
+
+//template literals
+
+const tempLiteral = `this is 
+${firstName} ${createCircle}
+a template literal`;
+
+//filtering an array
+
+const numbers = [1, 2, 6, 12, 3, -2];
+
+const positive = numbers.filter((n) => n >= 0);
+console.log(positive);
+
+//mapping an array
+
+// const items = positive.map((n) => "<li>" + n + "</li>");
+// const html = "<ul>" + positive.join("") + "</ul>";
+
+// console.log(html);
+
+// const items = positive.map((n) => ({ value: n }));
+// console.log(items);
+
+const items = numbers.filter((n) => n >= 0).map((n) => ({ value: n })); //this is called channing now we dont need positive constant
+console.log(items);
+
+//reducing an array
+
+let sum = 0;
+
+for (let n of numbers) {
+  sum += n;
+}
+console.log(sum);
+
+numbers.reduce((accumulator, currentvalue) => {
+  accumulator + currentvalue;
+},0);//here accumulator is set to be first value of the array we can give an innitial value after the function(where ',0' is added)
