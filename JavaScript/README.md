@@ -36,3 +36,10 @@ Where as Asyncronous systems can do multiple taskes at a time (multithreading).
 ### Callback
 
 Calling a function in a function is a caled callback.
+
+### callback hell
+
+callback hell is callbacks in callbacks...
+solution is promises...
+
+### promise cycle
