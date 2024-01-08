@@ -43,3 +43,12 @@ callback hell is callbacks in callbacks...
 solution is promises...
 
 ### promise cycle
+
+when we use .then() repeatedly for getting our work done
+
+### Async Await
+
+this is a better way of writing promises
+we mke use of async functions and where we wanna wait for something to get done we use await
+
+this doesn't mean that all the processes stop it just pause the async function but all other functions or processes continues to work with no hinderence
