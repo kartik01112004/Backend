@@ -35,7 +35,24 @@ how does client know what to send to which server.
 
 ## Creating a server
 
+### Localhost
+
 Localhost is like a domain name and it takes us to a loop back ip adderess that is 127.0.0.1 which makes our computer act as a host
+
+#### Port numbers
 
 Port numbers are like 'doors' into a computer
 localhost:3000
+
+#### Request
+
+req object of server holds all the info about the request that was made
+`const server = http.createServer((req, res) => {
+  console.log(req.url, req.method);
+});`
+
+#### Responce
+
+It is the responce genersted by the server that is showcased on webpage
+
+### Returning HTML Pages
