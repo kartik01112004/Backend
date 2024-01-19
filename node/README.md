@@ -56,3 +56,21 @@ req object of server holds all the info about the request that was made
 It is the responce genersted by the server that is showcased on webpage
 
 ### Returning HTML Pages
+
+express package
+
+### Status code
+
+They tell what type of resonce was sent to browser by server
+
+100 range - infromation responce
+200 range - success code
+300 range - code for redirect
+400 range - user or client error code
+500 range - server error code
+
+## Redirects
+
+## NPM 3rd party packages
+
+1. nodemon - reloading the server automaticaly
