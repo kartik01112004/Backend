@@ -74,3 +74,14 @@ They tell what type of resonce was sent to browser by server
 ## NPM 3rd party packages
 
 1. nodemon - reloading the server automaticaly
+2. Lodash - gives access to many functions
+
+## Express
+
+we are using express for easly going from page topage but writing a get request for each page seems too much can we make a list or someting comprizing of all pages and just run that list in one get request to show pages or something like that
+
+### view engins
+
+help make dynamic html page
+
+#### Ejs
