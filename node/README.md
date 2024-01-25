@@ -85,3 +85,5 @@ we are using express for easly going from page topage but writing a get request 
 help make dynamic html page
 
 #### Ejs
+
+### middleware
