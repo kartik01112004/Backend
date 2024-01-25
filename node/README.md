@@ -96,3 +96,14 @@ return 404 pages
 use `next();` to go to next middleware when one doesnt send any request and we want to go to next one
 
 #### static files
+
+## MongoDB Atlas
+
+It is a cloud database that we can connect to and use for our applications without downloaing it on our local system.
+
+we can use mongoose for joining the app and the database
+
+### Mongoose
+
+It is an ODM library - Object Document Mappingg library
+we connect them by making schemas and models to communicate between them.
