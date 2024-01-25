@@ -87,3 +87,12 @@ help make dynamic html page
 #### Ejs
 
 ### middleware
+
+logger middleware to log details of every request
+authentication check middleware for protected routes
+middleware to parse JSON data from requests
+return 404 pages
+
+use `next();` to go to next middleware when one doesnt send any request and we want to go to next one
+
+#### static files
