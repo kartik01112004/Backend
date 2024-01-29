@@ -3,13 +3,14 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const Blog = require("./models/blogs");
 const { result } = require("lodash");
-
+const dotenv = require("dotenv");
+dotenv.config();
+const { DBURI } = process.env;
 //express app
 const app = express();
 
 //connect to mongo db
-const dbURI =
-  "mongodb+srv://kartik:kartik.123@atlascluster.u4sb6oo.mongodb.net/AtlasCluster?retryWrites=true&w=majority";
+const dbURI = DBURI;
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(3000))
@@ -19,6 +20,7 @@ app.set("view engine", "ejs");
 
 // middleware & requests
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // mongoose and mongo sandbox routes
@@ -92,6 +94,10 @@ app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
 
+app.get("/blogs/create", (req, res) => {
+  res.render("create", { title: "Create a new blog" });
+});
+
 app.get("/blogs", (req, res) => {
   Blog.find()
     .sort({ createdAt: -1 })
@@ -100,9 +106,47 @@ app.get("/blogs", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-app.get("/blogs/create", (req, res) => {
-  res.render("create", { title: "Create a new blog" });
+
+app.post("/blogs", (req, res) => {
+  // console.log(req.body);
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
+
+//if we dont use : this before whatever parameter
+//we wanna access it will litteraly go to that url
+//and to to the intended on
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // redirects
 
 // app.get("/about-us", (req, res) => {

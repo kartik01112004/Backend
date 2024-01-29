@@ -107,3 +107,14 @@ we can use mongoose for joining the app and the database
 
 It is an ODM library - Object Document Mappingg library
 we connect them by making schemas and models to communicate between them.
+
+## Types of requests
+
+get
+post
+delete
+put (update data)
+
+## route parameters
+
+part of routes that can change
