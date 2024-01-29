@@ -1,7 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const Blog = require("./models/blogs");
+
+const blogRoutes = require("./routes/blogRoutes");
 const { result } = require("lodash");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -94,65 +95,13 @@ app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
 
-app.get("/blogs/create", (req, res) => {
-  res.render("create", { title: "Create a new blog" });
-});
-
-app.get("/blogs", (req, res) => {
-  Blog.find()
-    .sort({ createdAt: -1 })
-    .then((result) => {
-      res.render("index", { title: "all blogs", blogs: result });
-    })
-    .catch((err) => console.log(err));
-});
-
-app.post("/blogs", (req, res) => {
-  // console.log(req.body);
-  const blog = new Blog(req.body);
-
-  blog
-    .save()
-    .then((result) => {
-      res.redirect("/blogs");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-//if we dont use : this before whatever parameter
-//we wanna access it will litteraly go to that url
-//and to to the intended on
-app.get("/blogs/:id", (req, res) => {
-  const id = req.params.id;
-  Blog.findById(id)
-    .then((result) => {
-      res.render("details", { blog: result, title: "Blog Details" });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-app.delete("/blogs/:id", (req, res) => {
-  const id = req.params.id;
-
-  Blog.findByIdAndDelete(id)
-    .then((result) => {
-      res.json({ redirect: "/blogs" });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
 // redirects
 
 // app.get("/about-us", (req, res) => {
 //   res.redirect("/about");
 // });
 
+app.use("/blogs", blogRoutes);
 // 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });

@@ -118,3 +118,11 @@ put (update data)
 ## route parameters
 
 part of routes that can change
+
+## Express Router
+
+manage so many routes for easy understanding
+
+## MVC
+
+Model || View || Controller
